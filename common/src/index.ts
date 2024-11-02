@@ -13,13 +13,15 @@ export const signinInput = z.object({
 
 export const createPostInput = z.object({
     title: z.string(),
-    content: z.string()
+    content: z.string(),
+    name: z.string().optional()
 })
 
 export const updatePostInput = z.object({
     title: z.string(),
     content: z.string(),
-    id: z.string()
+    id: z.string(),
+    name: z.string().optional()
 })
 
 

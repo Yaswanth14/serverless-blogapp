@@ -25,25 +25,31 @@ export declare const signinInput: z.ZodObject<{
 export declare const createPostInput: z.ZodObject<{
     title: z.ZodString;
     content: z.ZodString;
+    name: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
+    name?: string | undefined;
 }, {
     title: string;
     content: string;
+    name?: string | undefined;
 }>;
 export declare const updatePostInput: z.ZodObject<{
     title: z.ZodString;
     content: z.ZodString;
     id: z.ZodString;
+    name: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
     id: string;
+    name?: string | undefined;
 }, {
     title: string;
     content: string;
     id: string;
+    name?: string | undefined;
 }>;
 export type SignupInput = z.infer<typeof signupInput>;
 export type SigninInput = z.infer<typeof signinInput>;
