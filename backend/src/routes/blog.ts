@@ -37,9 +37,8 @@ blogRouter.use("/*", async (c, next) => {
 
 blogRouter.post("/", async (c) => {
   const body = await c.req.json();
-  const {success} = createPostInput.safeParse(body);
-  if(!success)
-  {
+  const { success } = createPostInput.safeParse(body);
+  if (!success) {
     c.status(411);
     return c.json({
       message: "Inputs not correct"
@@ -65,9 +64,8 @@ blogRouter.post("/", async (c) => {
 
 blogRouter.put("/", async (c) => {
   const body = await c.req.json();
-  const {success} = updatePostInput.safeParse(body);
-  if(!success)
-  {
+  const { success } = updatePostInput.safeParse(body);
+  if (!success) {
     c.status(411);
     return c.json({
       message: "Inputs not correct"
@@ -99,7 +97,18 @@ blogRouter.get("/bulk", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const posts = await prisma.post.findMany({});
+  const posts = await prisma.post.findMany({
+    select: {
+      content: true,
+      title: true,
+      id: true,
+      author: {
+        select: {
+          name: true
+        }
+      }
+    }
+  });
 
   return c.json({
     posts,
