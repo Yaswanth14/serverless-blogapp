@@ -31,7 +31,7 @@ blogRouter.use("/*", async (c, next) => {
     }
   } catch (error) {
     c.status(403);
-    return c.json({ message: "Invalid token" });
+    return c.json({ message: `Invalid token` });
   }
 });
 
